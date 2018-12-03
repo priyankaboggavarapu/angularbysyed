@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+body {margin:0px;
+    padding:0px;
+    overflow-x:hidden;}
+    .navbar-brand img{    width: 134px;}
+    .navbar-dark .navbar-nav .nav-link {
+        color: rgb(255, 255, 255);
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .thumbnail {    border: 2px solid #80808017;
+        padding: 10px;}
+    
+    
+    .modal-header {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background-color: #003d80;
+        color: white;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 1rem;
+        border-bottom: 1px solid #e9ecef;
+        border-top-left-radius: 0.3rem;
+        border-top-right-radius: 0.3rem;
+    }
+    .thumbnail:hover{    box-shadow: 8px 7px 5px -3px grey;}

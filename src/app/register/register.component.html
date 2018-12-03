@@ -1,0 +1,119 @@
+<!-- <div class="modal-dialog"> -->
+<div class="col-md-8 offset-md-2">
+  <div class="modal-content border border-primary">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <h4 class="modal-title">User Register</h4>
+      <button type="button" class="close text-dark" data-dismiss="modal">&times;</button>
+    </div>
+    <!-- Modal body -->
+    <div class="modal-body">
+      <form #registerForm="ngForm">
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input type="text" 
+          alphabetsonly
+          class="form-control" id="firstName"
+           [(ngModel)]="userDetails.firstName" name="firstName" 
+           #firstName="ngModel"
+            required minlength="2" maxlength="10" [pattern]="nameRegex">
+          <span class="text-danger" *ngIf= " firstName.dirty && firstName.errors?.required">
+            {{validation.FIRSTNAME_REQUIRED}}
+          </span>
+          <span class="text-danger" *ngIf="firstName.dirty && firstName.errors?.minlength">
+            {{validation.FIRSTNAME_MINLENGTH}}
+          </span>
+          <span class="text-danger" *ngIf="firstName.errors?.maxlength">
+            {{validation.FIRSTNAME_MAXLENGTH}}
+          </span>
+          <span class="text-danger" *ngIf="firstName.errors?.pattern">
+            {{validation.NAME_PATTERN}}
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input type="text" 
+          alphabetsonly
+          class="form-control"
+          #lastName="ngModel"
+          id="lastName" 
+          [(ngModel)]="userDetails.lastName" name="lastName">
+        </div>
+        <div class="form-group">
+          <label for="UserName">UserName</label>
+          <input type="text" class="form-control"
+          name="userName"
+          id="userName" 
+          #userName="ngModel"
+          [(ngModel)]="userDetails.userName">
+        </div>
+        <div class="form-group">
+          <label for="Email">Email:</label>
+
+          <input type="text" class="form-control" 
+          name="email"
+          #email="ngModel"
+          id="email" [(ngModel)]="userDetails.email">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control"
+          name="pwd"   #password="ngModel"
+          id="password" [(ngModel)]="userDetails.password">
+        </div>
+        <div class="form-group">
+          <label for="ConfirmPassword">Confirm Password:</label>
+          <input type="password"
+          
+          class="form-control" id="ConfirmPassword"
+          name="confirmPassword"  #confirmPassword="ngModel"
+          [(ngModel)]="userDetails.confirmPassword">
+        </div>
+        <div class="form-group">
+          <label for="ConfirmPassword">Gender</label>
+          <input type="radio" value="M" [(ngModel)]="userDetails.gender" name="gender">Male
+          <input type="radio" value="F" [(ngModel)]="userDetails.gender" name="gender">Female
+        </div>
+        
+        <div class="form-group">
+          <label for="country">Date of Birth:</label>
+          <p-calendar [(ngModel)]="userDetails.DateOfBirth"></p-calendar> {{userDetails.DateOfBirth|date}}
+
+        </div>
+        <app-dropdown [ddl]="countryListObj"
+        (selectedChoice) = "countrySelected($event)"
+        ></app-dropdown>
+        <div class="form-group">
+          <label for="PhoneNumber">PhoneNumber:</label>
+          {{userDetails.country|prefixisd}} <input type="text" class="form-control"
+          name="mobileNumber" #mobileNumber="ngModel"
+          id="mobileNumber" [(ngModel)]="userDetails.mobileNumber">
+        </div>
+        <div class="form-group">
+          <label for="state">State:</label>
+          <input type="text" class="form-control"
+          name="state" #state="ngModel"
+          id="state" [(ngModel)]="userDetails.state" *ngIf="userDetails.country=='others' else showStateDropDown">
+          <ng-template #showStateDropDown>
+            <!-- <select class="form-control" id="state" 
+            name="state"  #state="ngModel"
+            [(ngModel)]="userDetails.state">
+              <option value="">Please Select</option>
+              <option *ngFor="let c of stateListByCountry" value="{{c.value}}">{{c.text}}</option>
+            </select> -->
+            <app-dropdown [ddl]="stateListObj"  
+            (selectedChoice) = "stateSelected($event)"></app-dropdown>
+          </ng-template>
+        </div>
+        <button type="button" 
+        [ngClass]="{'btn btn-primary':registerForm.valid, 'btn btn-danger':registerForm.invalid}"
+        [disabled]="registerForm.invalid" name="submit" (click)="register()">Submit</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+     
+    </div>
+
+  </div>
+</div>
+<!-- </div> -->

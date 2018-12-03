@@ -1,0 +1,13 @@
+<div class="form-group">
+  <label>{{ddl.label}}</label>
+  <select class="form-control" 
+   [name]="ddl.label"
+    [(ngModel)]="ddl.selectedValue"
+    (change)='handleDropdownChange()'
+    >
+
+    <option value="">Please Select</option>
+    <option *ngFor="let c of ddl.inputList" value="{{c.value}}">{{c.text}}</option>
+  </select>
+
+</div>
